@@ -1,0 +1,47 @@
+common:
+  company       : liquid
+  project_name  : qex
+  environment   : dev
+aws:
+  region  : ap-northeast-1
+  profile : default
+
+## VPC config
+vpc:
+  enable  : true
+  component   : network
+  vpc_cidr    : "10.10.0.0/16"
+  enable_ipv6 : false
+  map_public_ip_on_lauch : false
+  azs:
+    - "ap-northeast-1a"
+    - "ap-northeast-1c"
+    - "ap-northeast-1d"
+  subnets:
+    public:
+      - "10.10.0.0/22"
+      - "10.10.4.0/22"
+      - "10.10.8.0/22"
+    public_subnet_assign_ipv6: false
+    private :
+      - "10.10.12.0/22"
+      - "10.10.16.0/22"
+      - "10.10.20.0/22"
+    private_subnet_assign_ipv6: false
+  enable_nat_gateway     : true
+  single_nat_gateway     : true
+  one_nat_gateway_per_az : false
+  nat_vpn_enabled        : false
+
+## S3 buckets
+s3:
+  bucket_list:
+    - name      : "default"
+      versioning: true
+      acl       : "private"
+    - name      : "ui"
+      versioning: true
+      acl       : "private"
+    - name      : "reports"
+      versioning: true
+      acl       : "private"
